@@ -9,10 +9,10 @@ export class Aluno {
   }
 
   getAll = async () => {
-    return this.db('produtos').select();
+    return this.db('alunos').select();
   };
 
   store = async (params: any) => {
-    return this.db('produtos').insert(params);
+    return this.db('alunos').insert(params);
   };
 }

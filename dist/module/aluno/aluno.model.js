@@ -13,10 +13,10 @@ exports.Aluno = void 0;
 class Aluno {
     constructor(knexService) {
         this.getAll = () => __awaiter(this, void 0, void 0, function* () {
-            return this.db('produtos').select();
+            return this.db('alunos').select();
         });
         this.store = (params) => __awaiter(this, void 0, void 0, function* () {
-            return this.db('produtos').insert(params);
+            return this.db('alunos').insert(params);
         });
         this.db = knexService.conectar();
     }
