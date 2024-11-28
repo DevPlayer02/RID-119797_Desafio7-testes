@@ -1,10 +1,10 @@
-import { Aluno } from '../aluno.model';
+import Aluno from '../aluno.model';
 import { KnexService } from '../../../service/knex';
 import { response } from 'express';
 
-describe('Unit - Produto model Suite', () => {
+describe('Unit - Aluno model Suite', () => {
     it('deve retornar valores do modelo', async () => {
-        let knexServiceMock:any
+        let knexServiceMock: any;
 
         const knexMock = () => {
             return {
@@ -16,8 +16,8 @@ describe('Unit - Produto model Suite', () => {
             conectar: jest.fn(() => knexMock)
         }
 
-        const aluno = new Aluno(knexServiceMock);
-        const response = await aluno.getAll();
+        const alunoInstance = new Aluno(knexServiceMock);
+        const response = await alunoInstance.getAll();
         expect(response).toBeTruthy();
         expect(response.length).toBe(0);
     })
@@ -35,10 +35,11 @@ describe('Unit - Produto model Suite', () => {
             obterConexao: jest.fn(() => knexMock)
         }
 
-        const produto = new Produto(knexServiceMock);
-        const response = await produto.store({
-            nome: 'Produto teste 1',
-            preco: 2000
+        const alunoInstance = new Aluno(knexServiceMock);
+        const response = await alunoInstance.create({
+            id: 1,
+            nome: 'Xoxo',
+            cpf: 12345678900
         });
         expect(response).toBeTruthy();
         expect(response).toEqual([100]);

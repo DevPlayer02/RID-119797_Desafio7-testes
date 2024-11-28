@@ -8,9 +8,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const aluno_model_1 = require("../aluno.model");
-describe('Unit - Produto model Suite', () => {
+const aluno_model_1 = __importDefault(require("../aluno.model"));
+describe('Unit - Aluno model Suite', () => {
     it('deve retornar valores do modelo', () => __awaiter(void 0, void 0, void 0, function* () {
         let knexServiceMock;
         const knexMock = () => {
@@ -21,8 +24,8 @@ describe('Unit - Produto model Suite', () => {
         knexServiceMock = {
             conectar: jest.fn(() => knexMock)
         };
-        const aluno = new aluno_model_1.Aluno(knexServiceMock);
-        const response = yield aluno.getAll();
+        const alunoInstance = new aluno_model_1.default(knexServiceMock);
+        const response = yield alunoInstance.getAll();
         expect(response).toBeTruthy();
         expect(response.length).toBe(0);
     }));
@@ -36,10 +39,11 @@ describe('Unit - Produto model Suite', () => {
         knexServiceMock = {
             obterConexao: jest.fn(() => knexMock)
         };
-        const produto = new Produto(knexServiceMock);
-        const response = yield produto.store({
-            nome: 'Produto teste 1',
-            preco: 2000
+        const alunoInstance = new aluno_model_1.default(knexServiceMock);
+        const response = yield alunoInstance.create({
+            id: 1,
+            nome: 'Xoxo',
+            cpf: 12345678900
         });
         expect(response).toBeTruthy();
         expect(response).toEqual([100]);

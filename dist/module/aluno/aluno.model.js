@@ -9,16 +9,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Aluno = void 0;
 class Aluno {
     constructor(knexService) {
         this.getAll = () => __awaiter(this, void 0, void 0, function* () {
             return this.db('alunos').select();
         });
-        this.store = (params) => __awaiter(this, void 0, void 0, function* () {
+        this.create = (params) => __awaiter(this, void 0, void 0, function* () {
             return this.db('alunos').insert(params);
         });
         this.db = knexService.conectar();
     }
 }
-exports.Aluno = Aluno;
+exports.default = Aluno;

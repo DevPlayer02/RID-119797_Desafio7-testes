@@ -1,18 +1,18 @@
-import Knex from "../../service/knex";
-import { KnexService } from "../../service/knex";
+import { Knex } from "knex"; 
+import KnexService from "../../service/knex";
 
-export class Aluno {
+export default class Aluno {
   private db: Knex 
 
   constructor(knexService: KnexService) {
-    this.db = knexService.conectar()
+    this.db = knexService.conectar();
   }
 
   getAll = async () => {
     return this.db('alunos').select();
   };
 
-  store = async (params: any) => {
+  create = async (params: any) => {
     return this.db('alunos').insert(params);
   };
 }

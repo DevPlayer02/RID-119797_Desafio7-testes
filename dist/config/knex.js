@@ -4,7 +4,7 @@ exports.knexConfig = void 0;
 exports.knexConfig = {
     client: 'mysql2',
     connection: {
-        host: 'testednc',
+        host: 'localhost',
         port: 3306,
         user: 'user',
         password: 'password',

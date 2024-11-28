@@ -5,6 +5,16 @@
 
 import type {Config} from 'jest';
 
+module.exports = {
+  preset: 'ts-jest',
+  testEnvironment: 'node',
+  transform: {
+    '^.+\\.tsx?$': 'ts-jest',
+  },
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'], // Extensões suportadas
+};
+
+
 const config: Config = {
   // All imported modules in your tests should be mocked automatically
   // automock: false,
