@@ -3,8 +3,8 @@ export const knexConfig = {
     connection: {
       host: 'localhost',
       port: 3306,
-      user: 'user',
-      password: 'password',
+      user: 'dnc',
+      password: 'passworddnc',
       database: 'testednc',
     },
   };

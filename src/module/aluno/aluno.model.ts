@@ -9,10 +9,10 @@ export default class Aluno {
   }
 
   getAll = async () => {
-    return this.db('alunos').select();
+    return this.db('testednc.alunos').select();
   };
 
   create = async (params: any) => {
-    return this.db('alunos').insert(params);
+    return this.db('testednc.alunos').insert(params);
   };
 }

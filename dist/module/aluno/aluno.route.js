@@ -31,7 +31,7 @@ router.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         return res.status(201).json({ message: 'Aluno criado com sucesso', id: data[0] });
     }
     catch (error) {
-        return res.status(500).json({ error: 'Erro ao encontrar informações na página' });
+        return res.status(500).json(console.log(error));
     }
 }));
 exports.default = router;

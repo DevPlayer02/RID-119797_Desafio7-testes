@@ -1,5 +1,5 @@
 import express from "express";
-import alunoFactory, * as aluno from './aluno.factory'; 
+import alunoFactory from './aluno.factory'; 
 
 const router = express.Router();
 
@@ -18,7 +18,7 @@ router.post('/', async (req: any, res: any) => {
     const data = await alunoFactory.create(req.body);
     return res.status(201).json({ message: 'Aluno criado com sucesso',id: data[0] });
   } catch (error) {
-    return res.status(500).json({ error: 'Erro ao encontrar informações na página' });
+    return res.status(500).json(console.log(error));
   }  
 });
 

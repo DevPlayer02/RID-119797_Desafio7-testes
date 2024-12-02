@@ -15,29 +15,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const aluno_model_1 = __importDefault(require("../aluno.model"));
 describe('Unit - Aluno model Suite', () => {
     it('deve retornar valores do modelo', () => __awaiter(void 0, void 0, void 0, function* () {
-        let knexServiceMock;
-        const knexMock = () => {
-            return {
-                select: jest.fn().mockReturnValueOnce([])
-            };
-        };
-        knexServiceMock = {
-            conectar: jest.fn(() => knexMock)
+        const knexServiceMock = {
+            conectar: jest.fn().mockReturnValueOnce({
+                select: jest.fn().mockReturnValueOnce([]) // mock do método 'select'
+            })
         };
         const alunoInstance = new aluno_model_1.default(knexServiceMock);
-        const response = yield alunoInstance.getAll();
-        expect(response).toBeTruthy();
-        expect(response.length).toBe(0);
+        const result = yield alunoInstance.getAll();
+        expect(result).toBeTruthy();
+        expect(result.length).toBe(0);
     }));
     it('deve salvar um produto no modelo', () => __awaiter(void 0, void 0, void 0, function* () {
-        let knexServiceMock;
-        const knexMock = () => {
-            return {
-                insert: jest.fn().mockReturnValueOnce([100])
-            };
-        };
-        knexServiceMock = {
-            obterConexao: jest.fn(() => knexMock)
+        const knexServiceMock = {
+            conectar: jest.fn().mockReturnValueOnce({
+                insert: jest.fn().mockReturnValueOnce([100]) // mock do método 'insert'
+            })
         };
         const alunoInstance = new aluno_model_1.default(knexServiceMock);
         const response = yield alunoInstance.create({
