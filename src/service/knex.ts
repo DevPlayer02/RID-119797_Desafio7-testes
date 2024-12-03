@@ -3,13 +3,13 @@ import knexConfig from '../config/knex';
 
 export class KnexService {
   private static conn: Knex;
-  
-  conectar(): Knex {
+
+  conectar = () => {
     if (!KnexService.conn) {
-      KnexService.conn = knex(knexConfig);
+      KnexService.conn = knex(knexConfig)
     }
     return KnexService.conn;
   }
 }
 
-export default KnexService;
+export default Knex;

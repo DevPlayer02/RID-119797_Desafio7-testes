@@ -1,37 +1,47 @@
-import Aluno from '../aluno.model';
+import { Aluno } from '../aluno.model';
 import { KnexService } from '../../../service/knex';
 import { response } from 'express';
+import alunoFactory from '../aluno.factory';
 
 describe('Unit - Aluno model Suite', () => {
     it('deve retornar valores do modelo', async () => {
-        const knexServiceMock: any = {
-            conectar: jest.fn().mockReturnValueOnce({
-                select: jest.fn().mockResolvedValueOnce([])
-            })
-        };
+        let knexServiceMock:any
+
+        const knexMock = () => {
+            return {
+                select: jest.fn().mockReturnValueOnce([])
+            }
+        }
+
+        knexServiceMock = {
+            conectar: jest.fn(() => knexMock)
+        }
 
         const alunoInstance = new Aluno(knexServiceMock);
-        const result = await alunoInstance.getAll();
-
-        expect(result).toBeTruthy();
-        expect(result.length).toBe(0);
+        const response = await alunoFactory.getAll();
+        expect(response).toBeTruthy();
+        expect(response.length).toBe([3]);
     });
 
     it('deve salvar um produto no modelo', async () => {
-        const knexServiceMock: any = {
-            conectar: jest.fn().mockReturnValueOnce({
-                insert: jest.fn().mockResolvedValueOnce([100])
-            })
-        };
+        let knexServiceMock:any
+
+        const knexMock = () => {
+            return {
+                insert: jest.fn().mockReturnValueOnce([100])
+            }
+        }
+
+        knexServiceMock = {
+            conectar: jest.fn(() => knexMock)
+        }
 
         const alunoInstance = new Aluno(knexServiceMock);
-        const response = await alunoInstance.create({
-            id: 1,
-            nome: 'Xoxo',
-            cpf: 12345678900
+        const response = await alunoFactory.create({
+            nome: 'Leticia',
+            cpf: "12345678900"
         });
-
         expect(response).toBeTruthy();
-        expect(response).toEqual([100]);
+        expect(response).toEqual([3]);
     });
 })

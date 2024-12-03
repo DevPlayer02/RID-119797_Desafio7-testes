@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Aluno = void 0;
 class Aluno {
     constructor(knexService) {
         this.getAll = () => __awaiter(this, void 0, void 0, function* () {
@@ -20,4 +21,4 @@ class Aluno {
         this.db = knexService.conectar();
     }
 }
-exports.default = Aluno;
+exports.Aluno = Aluno;

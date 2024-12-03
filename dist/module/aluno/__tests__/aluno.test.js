@@ -12,32 +12,40 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const aluno_model_1 = __importDefault(require("../aluno.model"));
+const aluno_model_1 = require("../aluno.model");
+const aluno_factory_1 = __importDefault(require("../aluno.factory"));
 describe('Unit - Aluno model Suite', () => {
     it('deve retornar valores do modelo', () => __awaiter(void 0, void 0, void 0, function* () {
-        const knexServiceMock = {
-            conectar: jest.fn().mockReturnValueOnce({
-                select: jest.fn().mockReturnValueOnce([]) // mock do método 'select'
-            })
+        let knexServiceMock;
+        const knexMock = () => {
+            return {
+                select: jest.fn().mockReturnValueOnce([])
+            };
         };
-        const alunoInstance = new aluno_model_1.default(knexServiceMock);
-        const result = yield alunoInstance.getAll();
-        expect(result).toBeTruthy();
-        expect(result.length).toBe(0);
+        knexServiceMock = {
+            conectar: jest.fn(() => knexMock)
+        };
+        const alunoInstance = new aluno_model_1.Aluno(knexServiceMock);
+        const response = yield aluno_factory_1.default.getAll();
+        expect(response).toBeTruthy();
+        expect(response.length).toBe([3]);
     }));
     it('deve salvar um produto no modelo', () => __awaiter(void 0, void 0, void 0, function* () {
-        const knexServiceMock = {
-            conectar: jest.fn().mockReturnValueOnce({
-                insert: jest.fn().mockReturnValueOnce([100]) // mock do método 'insert'
-            })
+        let knexServiceMock;
+        const knexMock = () => {
+            return {
+                insert: jest.fn().mockReturnValueOnce([100])
+            };
         };
-        const alunoInstance = new aluno_model_1.default(knexServiceMock);
-        const response = yield alunoInstance.create({
-            id: 1,
-            nome: 'Xoxo',
-            cpf: 12345678900
+        knexServiceMock = {
+            conectar: jest.fn(() => knexMock)
+        };
+        const alunoInstance = new aluno_model_1.Aluno(knexServiceMock);
+        const response = yield aluno_factory_1.default.create({
+            nome: 'Leticia',
+            cpf: "12345678900"
         });
         expect(response).toBeTruthy();
-        expect(response).toEqual([100]);
+        expect(response).toEqual([3]);
     }));
 });
